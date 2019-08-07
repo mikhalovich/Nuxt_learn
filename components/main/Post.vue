@@ -9,7 +9,8 @@
 
       <small>
         <i class="el-icon-time"></i>
-        {{ new Date().toLocaleString() }}</small>
+        {{ new Date().toLocaleString() }}
+      </small>
     </header>
     <div class="post-body">
       <img src="https://g2.delphi.lv/images/pix/676x385/oGc34ft8X28/minsk-47394187.jpg" alt="post image" class="post-image">
@@ -30,7 +31,8 @@
 export default {
   methods: {
     openPost() {
-
+      const id = 'test-id';
+      this.$router.push(`/post/${id}`);
     },
   },
 }
