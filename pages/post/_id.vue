@@ -29,12 +29,14 @@
       <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tenetur corrupti, id eligendi labore necessitatibus neque. Veniam voluptatibus doloremque perspiciatis libero ad officia velit eveniet adipisci omnis hic, nihil quos, accusamus delectus cumque illo veritatis, dolorum dolor saepe alias cupiditate fugit. Molestias accusantium accusamus alias natus id ratione rerum, sit sapiente quidem! Officiis repellat ad corrupti a nobis est numquam cumque veniam commodi voluptate sit illum, beatae aut temporibus quisquam? Provident eum eaque laborum sed, distinctio maiores dolorem error saepe fugiat excepturi nostrum beatae modi nisi praesentium dicta quo aliquam ratione perferendis ducimus dolores, magnam at. Magnam unde, culpa voluptatem exercitationem dolorem architecto doloremque adipisci ad reprehenderit eum dolores libero eveniet possimus nam aperiam non vitae eligendi quasi nobis? Inventore saepe recusandae alias et dicta odio voluptatibus repudiandae maiores dolorem, aliquid rem sunt odit nostrum soluta perferendis laborum aut qu</p>
     </main>
     <footer>
+      <app-comment-form />
+
       <div class="comments" v-if="true">
         <app-comment
           v-for="comment in 4"
           :key="comment"
-        >
-        </app-comment>
+          :comment="comment"
+        />
       </div>
       <div class="text-center" v-else>
         No comments
@@ -45,6 +47,7 @@
 
 <script>
 import AppComment from '@/components/main/Comment';
+import AppCommentForm from '@/components/main/CommentForm';
 
 export default {
   validate({ params }) {
@@ -53,6 +56,7 @@ export default {
 
   components: {
     AppComment,
+    AppCommentForm,
   },
 }
 </script>
