@@ -26,10 +26,13 @@
     </header>
     <main class="post-content">
       <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tenetur corrupti, id eligendi labore necessitatibus neque. Veniam voluptatibus doloremque perspiciatis libero ad officia velit eveniet adipisci omnis hic, nihil quos, accusamus delectus cumque illo veritatis, dolorum dolor saepe alias cupiditate fugit. Molestias accusantium accusamus alias natus id ratione rerum, sit sapiente quidem! Officiis repellat ad corrupti a nobis est numquam cumque veniam commodi voluptate sit illum, beatae aut temporibus quisquam? Provident eum eaque laborum sed, distinctio maiores dolorem error saepe fugiat excepturi nostrum bea</p>
-      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tenetur corrupti, id eligendi labore necessitatibus neque. Veniam voluptatibus doloremque perspiciatis libero ad officia velit eveniet adipisci omnis hic, nihil quos, accusamus delectus cumque illo veritatis, dolorum dolor saepe alias cupiditate fugit. Molestias accusantium accusamus alias natus id ratione rerum, sit sapiente quidem! Officiis repellat ad corrupti a nobis est numquam cumque veniam commodi voluptate sit illum, beatae aut temporibus quisquam? Provident eum eaque laborum sed, distinctio maiores dolorem error saepe fugiat excepturi nostrum beatae modi nisi praesentium dicta quo aliquam ratione perferendis ducimus dolores, magnam at. Magnam unde, culpa voluptatem exercitationem dolorem architecto doloremque adipisci ad reprehenderit eum dolores libero eveniet possimus nam aperiam non vitae eligendi quasi nobis? Inventore saepe recusandae alias et dicta odio voluptatibus repudiandae maiores dolorem, aliquid rem sunt odit nostrum soluta perferendis laborum aut qu</p>
+      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tenetur corrupti, id eligendi labore necessitatibus neque. Veniam voluptatibus doloremque perspiciatis libero ad officia velit eveniet adipisci omnis hic, nihil quos, accusamus delectus cumque illo veritatis, dolorum dolor saepe alias cupiditate fugit. Molestias accusantium accusamus alias natus id ratione rerum, sit sapiente quidem! Officiis repellat ad corrupti a nobis est numquam cumque veniam commodi voluptate sit illum, beatae aut temporibus quisquam? Provident eum eaque laborum sed, distinctio maiores dolorem error</p>
     </main>
     <footer>
-      <app-comment-form />
+      <app-comment-form
+        v-if="canAddComment"
+        @created="createCommentHandler"
+      />
 
       <div class="comments" v-if="true">
         <app-comment
@@ -57,6 +60,18 @@ export default {
   components: {
     AppComment,
     AppCommentForm,
+  },
+
+  data() {
+    return {
+      canAddComment: true,
+    };
+  },
+
+  methods: {
+    createCommentHandler() {
+      this.canAddComment = false;
+    },
   },
 }
 </script>
