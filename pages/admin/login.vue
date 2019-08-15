@@ -60,8 +60,15 @@ export default {
   mounted() {
     const { message } = this.$route.query;
 
+    switch (message) {
+      case 'login':
+        this.$message.info('Log in first');
+      case 'logout':
+        this.$message.info('You are logged out')
+    }
+
     if (message === 'login') {
-      this.$message.info('Log in first')
+
     }
   },
 
