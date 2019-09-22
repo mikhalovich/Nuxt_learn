@@ -63,8 +63,10 @@ export default {
     switch (message) {
       case 'login':
         this.$message.info('Log in first');
+        break;
       case 'logout':
-        this.$message.info('You are logged out')
+        this.$message.success('You are logged out');
+        break;
     }
 
     if (message === 'login') {

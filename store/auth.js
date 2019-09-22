@@ -13,7 +13,7 @@ export const mutations = {
 }
 
 export const actions = {
-  async login({ commit, dispatch }, formData) {
+  async login({ commit, dispatch }) {
     try {
       const token = await new Promise(resolve => {
         setTimeout(() => resolve('mock-token'), 2000);
