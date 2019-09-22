@@ -9,7 +9,7 @@
       ref="form"
       @submit.native.prevent="onSubmit"
     >
-      <h1>Login to admin panel</h1>
+      <h2>Login to admin panel</h2>
 
       <el-form-item label="Login" prop="login">
         <el-input v-model.trim="controls.login" />
