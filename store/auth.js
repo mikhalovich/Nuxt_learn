@@ -1,5 +1,7 @@
+// import { createSecureServer } from "http2";
+
 export const state = () => ({
-  token: null
+  token: true
 })
 
 export const mutations = {
@@ -32,8 +34,16 @@ export const actions = {
 
   logout({ commit }) {
     commit('clearToken')
-  }
-}
+  },
+
+  // async createUser({ commit }, formData) {
+  //   try {
+  //     console.log('create', formData);
+  //   } catch (e) {
+
+  //   }
+  // },
+};
 
 export const getters = {
   isAuthenticated: state => Boolean(state.token),
