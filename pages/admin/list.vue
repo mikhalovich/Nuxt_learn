@@ -27,18 +27,22 @@
     </el-table-column>
     <el-table-column label="Operations">
       <template slot-scope="{row}">
-        <el-button
-          icon="el-icon-edit"
-          type="primary"
-          circle
-          @click="open(row._id)"
-        />
-        <el-button
-          icon="el-icon-delete"
-          type="danger"
-          circle
-          @click="remove(row._id)"
-        />
+        <el-tooltip effect="dark" content="Open post" placement="top">
+          <el-button
+            icon="el-icon-edit"
+            type="primary"
+            circle
+            @click="open(row._id)"
+          />
+        </el-tooltip>
+        <el-tooltip effect="dark" content="Remove post" placement="top">
+          <el-button
+            icon="el-icon-delete"
+            type="danger"
+            circle
+            @click="remove(row._id)"
+          />
+        </el-tooltip>
       </template>
     </el-table-column>
   </el-table>
@@ -55,11 +59,21 @@ export default {
 
   methods: {
     open(id) {
-      console.log('open', id);
+      this.$router.push(`/admin/post/${id}`);
     },
 
-    remove(id) {
-      console.log('remove', id);
+    async remove(id) {
+      try {
+        await this.$confirm('Remove post?', 'Warning!', {
+          confirmButtonText: 'Ok',
+          cancelButtonText: 'Cancel',
+          type: 'warning'
+        });
+        await this.$store.dispatch('post/remove', id);
+        this.posts = this.posts.filter(post => post._id !== id);
+
+        this.$message.success('Post deleted');
+      } catch (e) {}
     }
   }
 }
