@@ -16,11 +16,25 @@
     <el-form-item label="Text format .md or .html" prop="text">
       <el-input
         type="textarea"
-        v-model.trim="controls.text"
+        v-model="controls.text"
         resize="none"
         :rows="10"
       />
     </el-form-item>
+
+    <el-button class="mb" type="success" plain @click="previewDialog = true">
+      Preview
+    </el-button>
+
+    <el-dialog
+      title="Preview"
+      :visible.sync="previewDialog"
+    >
+      <div :key="controls.text">
+        <vue-markdown>{{ controls.text }}</vue-markdown>
+      </div>
+
+    </el-dialog>
 
     <el-form-item>
       <el-button
@@ -43,6 +57,7 @@ export default {
 
   data() {
     return {
+      previewDialog: false,
       loading: false,
       controls: {
         title: '',
