@@ -36,6 +36,19 @@
 
     </el-dialog>
 
+    <el-upload
+      class="mb"
+      drag
+      ref="upload"
+      action="https://jsonplaceholder.typicode.com/posts/"
+      :on-change="handleImageChange"
+      :auto-upload="false"
+    >
+      <i class="el-icon-upload"></i>
+      <div class="el-upload__text">Drop file here or <em>click to upload</em></div>
+      <div class="el-upload__tip" slot="tip">jpg/png files</div>
+    </el-upload>
+
     <el-form-item>
       <el-button
         type="primary"
@@ -57,6 +70,7 @@ export default {
 
   data() {
     return {
+      image: null,
       previewDialog: false,
       loading: false,
       controls: {
@@ -75,24 +89,33 @@ export default {
   },
 
   methods: {
+    handleImageChange(file, fileList) {
+      this.image = file.raw;
+    },
+
     onSubmit() {
       this.$refs.form.validate(async valid => {
-        if (valid) {
+        if (valid && this.image) {
           this.loading = true;
 
           const formData = {
             title: this.controls.title,
             text: this.controls.text,
+            image: this.image,
           }
 
           try {
             await this.$store.dispatch('post/create', formData);
             this.controls.text = '';
             this.controls.title = '';
+            this.image = null;
+            this.$refs.upload.clearFiles();
             this.$message.success('The post was successfully created');
           } catch (e) {} finally {
             this.loading = false;
           }
+        } else {
+          this.$message.warning('Form is invalid')
         }
       });
     },
