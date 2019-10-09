@@ -67,6 +67,9 @@ export default {
       case 'logout':
         this.$message.success('You are logged out');
         break;
+      case 'session':
+        this.$message.warning('Session timed out, please log in again');
+        break;
     }
 
     if (message === 'login') {
