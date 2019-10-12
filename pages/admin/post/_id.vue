@@ -16,7 +16,7 @@
       <el-form-item label="Text format .md or .html" prop="text">
         <el-input
           type="textarea"
-          v-model.trim="controls.text"
+          v-model="controls.text"
           resize="none"
           :rows="10"
         />
@@ -84,6 +84,10 @@ export default {
         ],
       }
     }
+  },
+
+  mounted() {
+    this.controls.text = this.post.text;
   },
 
   methods: {
