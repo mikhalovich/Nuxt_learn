@@ -9,13 +9,13 @@
 
     <el-form-item label="Name" prop="name">
       <el-input
-        v-model.trim="controls.name"
+        v-model="controls.name"
       />
     </el-form-item>
 
     <el-form-item label="Comment text" prop="text">
       <el-input
-        v-model.trim="controls.text"
+        v-model="controls.text"
         type="textarea"
         resize="none"
         :rows="3"
@@ -38,6 +38,13 @@
 
 <script>
 export default {
+  props: {
+    postId: {
+      type: String,
+      reqiured: true,
+    },
+  },
+
   data() {
     return {
       loading: false,
@@ -58,19 +65,21 @@ export default {
 
   methods: {
     onSubmit() {
-      this.$refs.form.validate(valid => {
+      this.$refs.form.validate(async valid => {
         if (valid) {
           this.loading = true;
 
           const formData = {
             name: this.controls.name,
             text: this.controls.text,
-            postId: '',
+            postId: this.postId,
           }
 
           try {
+            const newComment = await this.$store.dispatch('comment/create', formData);
+
             this.$message.success('Comment added');
-            this.$emit('created');
+            this.$emit('created', newComment);
           } catch (e) {
             this.loading = false;
           }
