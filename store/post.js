@@ -1,7 +1,7 @@
-const posts = [
-  {title: 'Post 1', date: new Date(), views: 22, comments: [1, 2], _id: 'id222'},
-  {title: 'Post 2', date: new Date(), views: 13, comments: [1, 2, 3], _id: 'id111'}
-];
+// const posts = [
+//   {title: 'Post 1', date: new Date(), views: 22, comments: [1, 2], _id: 'id222'},
+//   {title: 'Post 2', date: new Date(), views: 13, comments: [1, 2, 3], _id: 'id111'}
+// ];
 
 export const actions = {
   async fetchAdmin({commit}) {
@@ -83,4 +83,13 @@ export const actions = {
       throw e;
     }
   },
+
+  async getAnalytics({commit}) {
+    try {
+      return await this.$axios.$get('/api/post/admin/get/analytics');
+    } catch (e) {
+      commit('setError', e, {root: true});
+      throw e;
+    }
+  }
 }
