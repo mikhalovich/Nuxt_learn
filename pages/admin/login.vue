@@ -37,6 +37,9 @@
 <script>
 export default {
   layout: 'empty',
+  head: {
+    title: `Login to admin page | ${process.env.appName}`
+  },
 
   data() {
     return {

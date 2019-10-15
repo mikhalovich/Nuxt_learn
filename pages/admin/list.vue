@@ -56,6 +56,9 @@ export default {
     const posts = await store.dispatch('post/fetchAdmin');
     return {posts};
   },
+  head: {
+    title: `All posts | ${process.env.appName}`
+  },
 
   methods: {
     open(id) {

@@ -67,6 +67,9 @@
 export default {
   layout: 'admin',
   middleware: ['admin-auth'],
+  head: {
+    title: `New post | ${process.env.appName}`
+  },
 
   data() {
     return {
