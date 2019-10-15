@@ -58,7 +58,7 @@ module.exports = {
   },
 
   env: {
-    appName: 'SSR Blog'
+    appName: 'My Nuxt Blog'
   },
   /*
   ** Build configuration
