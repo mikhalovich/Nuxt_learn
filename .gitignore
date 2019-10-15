@@ -91,3 +91,4 @@ sw.*
 .DS_Store
 
 server/keys/keys.dev.js
+package-lock.json
